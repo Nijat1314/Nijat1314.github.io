@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>尼加提 | 个人主页 课程作业</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        body{
+            background-color: #f4f7fa;
+            color: #2c3e50;
+            line-height: 1.7;
+        }
+        /* 导航栏 */
+        nav{
+            background-color: #2c3e50;
+            padding: 16px 0;
+            position: sticky;
+            top:0;
+            z-index:99;
+        }
+        .nav-container{
+            max-width: 1100px;
+            margin:0 auto;
+            display:flex;
+            justify-content: space-between;
+            align-items:center;
+            padding:0 20px;
+        }
+        .logo{
+            color:white;
+            font-size:22px;
+            font-weight:bold;
+        }
+        .nav-links a{
+            color:#ecf0f1;
+            text-decoration:none;
+            margin-left:24px;
+            font-size:16px;
+        }
+        .nav-links a:hover{
+            color:#3498db;
+        }
+        /* 容器通用 */
+        .container{
+            max-width:1100px;
+            margin:0 auto;
+            padding:40px 20px;
+        }
+        section{
+            margin-bottom:60px;
+            background:white;
+            padding:32px;
+            border-radius:12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        h2{
+            border-left:5px solid #3498db;
+            padding-left:12px;
+            margin-bottom:20px;
+            color:#2c3e50;
+        }
+        /* 首页头部 */
+        #home{
+            text-align:center;
+            padding:70px 20px;
+            background: linear-gradient(135deg,#3498db,#2980b9);
+            color:white;
+            border-radius:12px;
+        }
+        #home h1{
+            font-size:38px;
+            margin-bottom:12px;
+        }
+        .download-btn{
+            display:inline-block;
+            margin-top:26px;
+            padding:14px 30px;
+            background-color:white;
+            color:#2980b9;
+            text-decoration:none;
+            border-radius:8px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+        .download-btn:hover{
+            background:#ecf0f1;
+            transform: translateY(-2px);
+        }
+        /* 相册 三张照片区域 */
+        .photo-group{
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            gap:20px;
+        }
+        .photo-card{
+            border-radius:8px;
+            overflow:hidden;
+            border:1px solid #eee;
+        }
+        .photo-card img{
+            width:100%;
+            height:240px;
+            object-fit:cover;
+        }
+        .photo-card p{
+            text-align:center;
+            padding:10px;
+        }
+        /* 技能标签 */
+        .skill-item{
+            display:inline-block;
+            background:#e8f4fc;
+            padding:8px 16px;
+            border-radius:22px;
+            margin:8px 6px;
+            color:#2980b9;
+        }
+        ul{
+            padding-left:22px;
+            margin:10px 0;
+        }
+        /* 页脚 */
+        footer{
+            text-align:center;
+            padding:24px;
+            color:#7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <!--导航栏-->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">尼加提的个人主页</div>
+            <div class="nav-links">
+                <a href="#home">首页</a>
+                <a href="#about">关于我</a>
+                <a href="#gallery">相册</a>
+                <a href="#skill">专业技能</a>
+                <a href="#eval">自我评价</a>
+                <a href="#contact">联系方式</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!--首页板块-->
+        <section id="home">
+            <h1>你好，我是尼加提</h1>
+            <p>湖南大学｜国际经济与贸易专业｜经济大数据挖掘与分析课程作业</p>
+            <a href="resume.pdf" class="download-btn" download>📄 下载我的PDF简历</a>
+        </section>
+
+        <!--关于我（教育、校园实践）-->
+        <section id="about">
+            <h2>关于我</h2>
+            <p><strong>湖南大学 本科｜国际经济与贸易 2024.09‑2028.06</strong></p>
+            <p><strong>主修课程：</strong>国际贸易实务、国际商务、金融学、数字经济学、Python</p>
+            <ul>
+                <li>熟悉国际贸易流程与操作，了解国际金融市场运作机制，会使用量化分析工具完成基础的数据处理和分析。</li>
+                <li>学术实践：参与贸易场景模拟实训，运用博弈论和概率论完成跨境贸易决策分析作业，提升实际问题解决能力。</li>
+                <li>校园经历：青年志愿者协会，多次参与志愿服务，锻炼团队协作能力，增强社会责任感。</li>
+            </ul>
+            <p><em>目前暂无正式工作经历。</em></p>
+        </section>
+
+        <!--相册 3张图片-->
+        <section id="gallery">
+            <h2>个人相册</h2>
+            <div class="photo-group">
+                <div class="photo-card">
+                    <img src="photo1.jpg" alt="照片1">
+                    <p>照片描述1</p>
+                </div>
+                <div class="photo-card">
+                    <img src="photo2.jpg" alt="照片2">
+                    <p>照片描述2</p>
+                </div>
+                <div class="photo-card">
+                    <img src="photo3.jpg" alt="照片3">
+                    <p>照片描述3</p>
+                </div>
+            </div>
+        </section>
+
+        <!--专业技能-->
+        <section id="skill">
+            <h2>专业技能</h2>
+            <div>
+                <span class="skill-item">国际贸易理论</span>
+                <span class="skill-item">国际商务</span>
+                <span class="skill-item">Python基础</span>
+                <span class="skill-item">数据处理分析</span>
+                <span class="skill-item">办公软件</span>
+                <span class="skill-item">英语沟通</span>
+                <span class="skill-item">报告撰写</span>
+            </div>
+        </section>
+
+        <!--自我评价，完全取自你的简历-->
+        <section id="eval">
+            <h2>自我评价</h2>
+            <p>国际经济与贸易专业背景，具备扎实的国际贸易理论知识基础，通过课程学习掌握了市场分析、数据处理等基本技能。</p>
+            <p>拥有良好的英语沟通能力及文档处理技巧，能够熟练使用办公软件进行数据分析和报告撰写。</p>
+            <p>性格乐观诚恳，责任心强，做事踏实细致。善于团队合作与人际沟通，具有较强的学习适应能力和自我提升意识。</p>
+        </section>
+
+        <!--联系方式（来自你的简历）-->
+        <section id="contact">
+            <h2>联系方式</h2>
+            <p>姓名：尼加提</p>
+            <p>电话：17673****95</p>
+            <p>邮箱：g1314520iu@126.com</p>
+            <p>出生年月：2005.08｜民族：维吾尔族｜政治面貌：共青团员</p>
+            <p>现居：长沙</p>
+        </section>
+    </div>
+    <footer>
+        © 2026 尼加提｜经济大数据挖掘与分析课程作业
+    </footer>
+</body>
+</html>
