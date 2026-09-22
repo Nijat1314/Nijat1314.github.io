@@ -1,228 +1,743 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>尼加提 | 个人主页 课程作业</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft YaHei", sans-serif;
-        }
-        body{
-            background-color: #f4f7fa;
-            color: #2c3e50;
-            line-height: 1.7;
-        }
-        /* 导航栏 */
-        nav{
-            background-color: #2c3e50;
-            padding: 16px 0;
-            position: sticky;
-            top:0;
-            z-index:99;
-        }
-        .nav-container{
-            max-width: 1100px;
-            margin:0 auto;
-            display:flex;
-            justify-content: space-between;
-            align-items:center;
-            padding:0 20px;
-        }
-        .logo{
-            color:white;
-            font-size:22px;
-            font-weight:bold;
-        }
-        .nav-links a{
-            color:#ecf0f1;
-            text-decoration:none;
-            margin-left:24px;
-            font-size:16px;
-        }
-        .nav-links a:hover{
-            color:#3498db;
-        }
-        /* 容器通用 */
-        .container{
-            max-width:1100px;
-            margin:0 auto;
-            padding:40px 20px;
-        }
-        section{
-            margin-bottom:60px;
-            background:white;
-            padding:32px;
-            border-radius:12px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        }
-        h2{
-            border-left:5px solid #3498db;
-            padding-left:12px;
-            margin-bottom:20px;
-            color:#2c3e50;
-        }
-        /* 首页头部 */
-        #home{
-            text-align:center;
-            padding:70px 20px;
-            background: linear-gradient(135deg,#3498db,#2980b9);
-            color:white;
-            border-radius:12px;
-        }
-        #home h1{
-            font-size:38px;
-            margin-bottom:12px;
-        }
-        .download-btn{
-            display:inline-block;
-            margin-top:26px;
-            padding:14px 30px;
-            background-color:white;
-            color:#2980b9;
-            text-decoration:none;
-            border-radius:8px;
-            font-weight:bold;
-            transition:0.3s;
-        }
-        .download-btn:hover{
-            background:#ecf0f1;
-            transform: translateY(-2px);
-        }
-        /* 相册 三张照片区域 */
-        .photo-group{
-            display:grid;
-            grid-template-columns: repeat(3,1fr);
-            gap:20px;
-        }
-        .photo-card{
-            border-radius:8px;
-            overflow:hidden;
-            border:1px solid #eee;
-        }
-        .photo-card img{
-            width:100%;
-            height:240px;
-            object-fit:cover;
-        }
-        .photo-card p{
-            text-align:center;
-            padding:10px;
-        }
-        /* 技能标签 */
-        .skill-item{
-            display:inline-block;
-            background:#e8f4fc;
-            padding:8px 16px;
-            border-radius:22px;
-            margin:8px 6px;
-            color:#2980b9;
-        }
-        ul{
-            padding-left:22px;
-            margin:10px 0;
-        }
-        /* 页脚 */
-        footer{
-            text-align:center;
-            padding:24px;
-            color:#7f8c8d;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>尼加提 · 个人主页 | 经济大数据挖掘与分析</title>
+<style>
+/* ===================== 基础与变量 ===================== */
+:root{
+  --pink-1:#ffeef6;
+  --pink-2:#ffd9ec;
+  --pink-3:#ffc2e0;
+  --pink-4:#ffa6d4;
+  --purple:#c89bff;
+  --mint:#a8e6cf;
+  --lemon:#fff3b0;
+  --ink:#6b4a5a;
+  --ink-soft:#9a7d8b;
+  --white:rgba(255,255,255,.82);
+  --radius:26px;
+  --shadow:0 10px 28px rgba(255,150,200,.22);
+  --shadow-hover:0 20px 42px rgba(255,130,190,.38);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    linear-gradient(180deg,rgba(255,240,248,.78) 0%,rgba(255,232,244,.72) 45%,rgba(255,220,238,.7) 100%),
+    url("background.png") center top / cover no-repeat fixed #ffe6f2;
+  line-height:1.85;
+  min-height:100vh;
+  padding-bottom:130px; /* 给底部彩虹留空间，避免遮字 */
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+/* ===================== 顶部导航栏 ===================== */
+.nav-wrap{
+  position:sticky;top:0;z-index:60;
+  padding:12px 0 0;
+}
+.nav{
+  width:min(1120px,94vw);margin:0 auto;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:2px solid rgba(255,255,255,.9);
+  border-radius:999px;
+  box-shadow:0 8px 26px rgba(255,150,200,.25);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 18px;
+  gap:12px;
+}
+.nav .brand{
+  display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:18px;color:#ff6fb1;
+  letter-spacing:1px;white-space:nowrap;
+}
+.brand-dot{
+  width:26px;height:26px;border-radius:50%;
+  background:conic-gradient(#ffb6d9,#ffd6a5,#b6e3ff,#d7b9ff,#ffb6d9);
+  box-shadow:0 0 0 3px #fff, 0 4px 10px rgba(255,140,190,.4);
+  animation:spin 8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.nav ul{list-style:none;display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;}
+.nav ul li a{
+  display:block;padding:8px 16px;border-radius:999px;
+  font-size:15px;font-weight:600;color:var(--ink-soft);
+  transition:.28s ease;
+  white-space:nowrap;
+}
+.nav ul li a:hover{
+  color:#fff;background:linear-gradient(135deg,#ff9ecb,#ffa8d8);
+  box-shadow:0 6px 16px rgba(255,130,190,.4);transform:translateY(-2px);
+}
+.nav ul li a.active{
+  color:#fff;
+  background:linear-gradient(135deg,#ff85c0,#ffb3dd);
+  box-shadow:0 6px 18px rgba(255,120,185,.45);
+}
+/* 汉堡按钮（窄屏） */
+.nav-toggle{display:none;}
+
+/* ===================== 通用容器与标题 ===================== */
+.container{width:min(1120px,94vw);margin:0 auto;}
+section{padding:78px 0 10px;scroll-margin-top:96px;}
+.sec-head{text-align:center;margin-bottom:38px;}
+.sec-tag{
+  display:inline-block;padding:5px 18px;border-radius:999px;
+  background:linear-gradient(135deg,#ffd0e8,#ffe9f6);
+  color:#e5529a;font-size:13px;font-weight:700;letter-spacing:2px;
+  border:1px solid #fff;box-shadow:0 4px 12px rgba(255,150,200,.25);
+}
+.sec-title{
+  margin-top:12px;font-size:30px;font-weight:800;letter-spacing:1px;
+  background:linear-gradient(90deg,#ff7bb0,#b98bff,#ff9ec9);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sec-line{
+  width:120px;height:6px;margin:14px auto 0;border-radius:999px;
+  background:linear-gradient(90deg,#ffb6d9,#ffe0a3,#b6e3ff,#d7b9ff);
+}
+
+/* 卡片通用 */
+.card{
+  background:var(--white);
+  border:2px solid rgba(255,255,255,.95);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  padding:26px 28px;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1.2), box-shadow .35s ease;
+}
+.card:hover{transform:translateY(-10px);box-shadow:var(--shadow-hover);}
+
+/* ===================== 首页 Hero ===================== */
+.hero{
+  padding-top:52px;
+}
+.hero-card{
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.35fr .95fr;gap:34px;align-items:center;
+  padding:46px 44px;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.9),rgba(255,240,250,.85));
+  border:3px solid #fff;
+  border-radius:38px;
+  box-shadow:0 18px 46px rgba(255,140,195,.3);
+}
+.hero-card::before{
+  content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,#ffd0e8,transparent 70%);
+  top:-90px;right:-60px;opacity:.75;
+}
+.hero-card::after{
+  content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,#d9c6ff,transparent 70%);
+  bottom:-100px;left:-70px;opacity:.6;
+}
+.hero-text{position:relative;z-index:2;}
+.hero-hi{
+  display:inline-block;padding:6px 16px;border-radius:999px;
+  background:linear-gradient(135deg,#ffe1b8,#ffd0e8);
+  color:#c94f8e;font-size:14px;font-weight:700;
+}
+.hero-name{
+  margin:16px 0 6px;font-size:52px;font-weight:900;letter-spacing:2px;
+  background:linear-gradient(90deg,#ff6fae,#a97bff 55%,#ff9bcb);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{font-size:17px;color:var(--ink-soft);font-weight:600;}
+.hero-desc{margin-top:16px;font-size:15.5px;color:#7d5d6c;max-width:520px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 26px;border-radius:999px;font-weight:800;font-size:15px;
+  border:none;cursor:pointer;transition:.3s ease;
+}
+.btn-pdf{
+  color:#fff;
+  background:linear-gradient(135deg,#ff77b7,#ff9ed2 60%,#b98bff);
+  box-shadow:0 10px 24px rgba(255,120,185,.45);
+}
+.btn-pdf:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 16px 32px rgba(255,110,180,.55);}
+.btn-ghost{
+  color:#e5529a;background:#fff;border:2px solid #ffc2e0;
+  box-shadow:0 8px 18px rgba(255,150,200,.22);
+}
+.btn-ghost:hover{transform:translateY(-4px);background:#fff0f8;}
+.btn .icon{
+  width:22px;height:22px;flex:none;
+}
+
+/* Hero 右侧装饰：奶龙 + 头像圈 */
+.hero-art{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;}
+.avatar-ring{
+  width:210px;height:210px;border-radius:50%;padding:8px;
+  background:conic-gradient(from 0deg,#ffb6d9,#ffe0a3,#b6e3ff,#d7b9ff,#ffb6d9);
+  box-shadow:0 14px 34px rgba(255,140,195,.35);
+  animation:spin 14s linear infinite;
+}
+.avatar-inner{
+  width:100%;height:100%;border-radius:50%;overflow:hidden;
+  background:linear-gradient(160deg,#fff6fb,#ffe4f3);
+  display:flex;align-items:center;justify-content:center;
+}
+/* 纯 CSS 蝴蝶结（替代原贴图装饰） */
+.css-bow{position:relative;width:120px;height:88px;animation:floaty 4.5s ease-in-out infinite;}
+.bow-wing{
+  position:absolute;top:6px;width:58px;height:66px;
+  background:linear-gradient(135deg,#ffb0d8,#ff85c0);
+  border-radius:62% 38% 60% 40% / 55% 45% 55% 45%;
+  box-shadow:inset 0 -8px 14px rgba(255,255,255,.5), 0 8px 16px rgba(255,130,190,.3);
+}
+.bow-wing.wl{left:0;transform:rotate(-16deg);}
+.bow-wing.wr{right:0;transform:rotate(16deg) scaleX(-1);}
+.bow-knot{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:32px;height:32px;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#ffd3e8,#ff8fc4 70%);
+  box-shadow:0 0 0 4px #fff, 0 6px 14px rgba(255,120,185,.4);
+}
+.hero-spark{position:relative;width:150px;height:44px;}
+.spark{
+  position:absolute;width:16px;height:16px;top:14px;
+  background:linear-gradient(135deg,#ffd76e,#ff9ecb);
+  transform:rotate(45deg);border-radius:4px;
+  box-shadow:0 0 10px rgba(255,190,120,.7);
+}
+.spark.s1{left:18px;animation:floaty 3.2s ease-in-out infinite;}
+.spark.s2{left:68px;width:22px;height:22px;top:6px;background:linear-gradient(135deg,#c9a6ff,#ff9ecb);animation:floaty 4.1s ease-in-out infinite .4s;}
+.spark.s3{left:118px;animation:floaty 3.7s ease-in-out infinite .8s;}
+
+/* ===================== 关于我 ===================== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.info-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.info-list li{
+  background:linear-gradient(135deg,#fff6fb,#ffeef7);
+  border:2px solid #fff;border-radius:18px;padding:14px 16px;
+  box-shadow:0 6px 16px rgba(255,150,200,.16);
+  transition:.3s ease;
+}
+.info-list li:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover);}
+.info-list .k{display:block;font-size:12.5px;color:#c58aa6;font-weight:700;letter-spacing:1px;}
+.info-list .v{display:block;font-size:16px;font-weight:700;color:#5f4353;margin-top:3px;}
+.timeline{position:relative;padding-left:26px;}
+.timeline::before{
+  content:"";position:absolute;left:8px;top:6px;bottom:6px;width:4px;border-radius:999px;
+  background:linear-gradient(180deg,#ffb6d9,#c9a6ff,#a8e6cf);
+}
+.tl-item{position:relative;margin-bottom:20px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-item::before{
+  content:"";position:absolute;left:-24px;top:9px;width:14px;height:14px;border-radius:50%;
+  background:#fff;border:3px solid #ff8fc4;box-shadow:0 0 0 4px rgba(255,143,196,.2);
+}
+.tl-title{font-size:16.5px;font-weight:800;color:#6b4a5a;}
+.tl-time{display:inline-block;margin-left:8px;font-size:12.5px;color:#fff;background:linear-gradient(135deg,#ffa8d8,#c89bff);padding:2px 12px;border-radius:999px;font-weight:700;}
+.tl-desc{font-size:14.5px;color:#83636f;margin-top:5px;}
+
+/* ===================== 相册 ===================== */
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.ph{
+  position:relative;border-radius:24px;overflow:hidden;
+  border:5px solid #fff;
+  background:linear-gradient(160deg,#fff2f9,#ffe0f0);
+  box-shadow:0 12px 28px rgba(255,140,195,.28);
+  aspect-ratio:1/1;
+  transition:transform .4s cubic-bezier(.2,.9,.3,1.2), box-shadow .4s ease;
+  cursor:pointer;
+}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+.ph:hover{transform:translateY(-12px) rotate(-1.2deg);box-shadow:0 24px 46px rgba(255,120,185,.42);}
+.ph:hover img{transform:scale(1.08);}
+.ph::after{
+  content:"";position:absolute;inset:0;border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.25),rgba(255,160,210,.18));
+  opacity:0;transition:.4s ease;
+}
+.ph:hover::after{opacity:1;}
+.ph-cap{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:12px 14px;font-size:14px;font-weight:800;color:#fff;
+  background:linear-gradient(0deg,rgba(255,120,180,.85),rgba(255,120,180,0));
+  letter-spacing:1px;
+}
+
+/* ===================== 专业技能 ===================== */
+.skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.course-tags{display:flex;flex-wrap:wrap;gap:12px;}
+.tag{
+  padding:10px 20px;border-radius:999px;font-weight:700;font-size:14.5px;color:#a34c7c;
+  background:linear-gradient(135deg,#fff0f8,#ffe0ef);
+  border:2px solid #fff;box-shadow:0 6px 16px rgba(255,150,200,.2);
+  transition:.3s ease;
+}
+.tag:hover{transform:translateY(-6px) scale(1.04);box-shadow:var(--shadow-hover);color:#fff;background:linear-gradient(135deg,#ff9ecb,#c89bff);}
+.bar{margin-bottom:16px;}
+.bar:last-child{margin-bottom:0;}
+.bar-top{display:flex;justify-content:space-between;font-size:14.5px;font-weight:700;margin-bottom:7px;}
+.bar-top span:last-child{color:#c76fa4;}
+.bar-track{height:14px;border-radius:999px;background:#ffe6f3;overflow:hidden;box-shadow:inset 0 2px 5px rgba(255,140,190,.18);}
+.bar-fill{
+  height:100%;border-radius:999px;width:0;
+  background:linear-gradient(90deg,#ffb6d9,#ff8fc4 45%,#c89bff);
+  box-shadow:0 3px 10px rgba(255,130,190,.4);
+  transition:width 1.4s cubic-bezier(.2,.9,.3,1);
+}
+.bar-fill.mint{background:linear-gradient(90deg,#b6e3ff,#a8e6cf 50%,#ffe0a3);}
+
+/* ===================== 自我评价 ===================== */
+.eval-card{
+  position:relative;overflow:hidden;text-align:center;
+  background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(255,235,248,.9));
+  border:3px solid #fff;border-radius:34px;
+  box-shadow:0 16px 40px rgba(255,140,195,.28);
+  padding:44px 40px;
+}
+.eval-card::before{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,#ffe0f2,transparent 70%);top:-70px;left:-60px;
+}
+.eval-card::after{
+  content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,#e2d4ff,transparent 70%);bottom:-80px;right:-60px;
+}
+.eval-quote{position:relative;z-index:2;font-size:26px;color:#ffb3d9;line-height:1;}
+.eval-text{
+  position:relative;z-index:2;margin-top:14px;
+  font-size:16.5px;color:#6b4a5a;line-height:2.1;text-align:justify;
+  max-width:860px;margin-left:auto;margin-right:auto;
+}
+.eval-badges{position:relative;z-index:2;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:26px;}
+.badge{
+  padding:8px 18px;border-radius:999px;font-size:13.5px;font-weight:700;color:#a34c7c;
+  background:#fff;border:2px dashed #ffc2e0;
+}
+
+/* ===================== 联系方式 ===================== */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.ct{
+  text-align:center;border-radius:24px;padding:28px 20px;
+  background:linear-gradient(135deg,#fff6fb,#ffeaf6);
+  border:3px solid #fff;box-shadow:0 10px 26px rgba(255,150,200,.24);
+  transition:.35s cubic-bezier(.2,.9,.3,1.2);
+}
+.ct:hover{transform:translateY(-12px);box-shadow:var(--shadow-hover);}
+.ct-ico{
+  width:58px;height:58px;margin:0 auto 14px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#ffb6d9,#c89bff);
+  box-shadow:0 8px 18px rgba(255,140,195,.4);
+}
+.ct-ico svg{width:28px;height:28px;}
+.ct-k{font-size:13px;color:#c58aa6;font-weight:700;letter-spacing:2px;}
+.ct-v{margin-top:6px;font-size:16px;font-weight:800;color:#5f4353;word-break:break-all;}
+.contact-bottom{text-align:center;margin-top:34px;}
+.tip{margin-top:14px;font-size:13px;color:#a9869a;}
+
+/* ===================== 页脚 ===================== */
+footer{
+  text-align:center;padding:36px 20px 10px;color:#a9869a;font-size:13.5px;
+}
+footer .foot-brand{font-weight:800;color:#ff7bb0;letter-spacing:1px;font-size:15px;}
+
+@keyframes floaty{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+/* ===================== 底部彩虹（渐变·不挡字） ===================== */
+.rainbow{
+  position:fixed;left:0;right:0;bottom:0;z-index:20;
+  height:92px;pointer-events:none;
+  overflow:hidden;             /* 超出部分裁掉，绝不遮住正文 */
+  opacity:.85;
+}
+.rainbow .arc{
+  position:absolute;bottom:-70px;left:50%;transform:translateX(-50%);
+  border-radius:50% 50% 0 0 / 100% 100% 0 0;
+  border-style:solid;border-bottom:none;
+  animation:glow 3.2s ease-in-out infinite;
+}
+.arc.a1{width:1500px;height:160px;border-width:13px;border-color:rgba(255,158,196,.9) transparent transparent transparent;}
+.arc.a2{width:1330px;height:146px;border-width:13px;border-color:rgba(255,196,142,.9) transparent transparent transparent;animation-delay:.2s;}
+.arc.a3{width:1160px;height:132px;border-width:13px;border-color:rgba(255,233,138,.9) transparent transparent transparent;animation-delay:.4s;}
+.arc.a4{width:990px;height:118px;border-width:13px;border-color:rgba(168,230,207,.9) transparent transparent transparent;animation-delay:.6s;}
+.arc.a5{width:820px;height:104px;border-width:13px;border-color:rgba(165,216,255,.9) transparent transparent transparent;animation-delay:.8s;}
+.arc.a6{width:650px;height:90px;border-width:13px;border-color:rgba(201,166,255,.9) transparent transparent transparent;animation-delay:1s;}
+.arc.a7{width:480px;height:76px;border-width:13px;border-color:rgba(255,182,217,.9) transparent transparent transparent;animation-delay:1.2s;}
+@keyframes glow{
+  0%,100%{filter:drop-shadow(0 0 4px rgba(255,255,255,.8));opacity:.85;}
+  50%{filter:drop-shadow(0 0 12px rgba(255,255,255,1));opacity:1;}
+}
+.cloud{
+  position:absolute;bottom:16px;width:110px;height:38px;border-radius:999px;
+  background:linear-gradient(180deg,#ffffff,#ffe9f5);
+  box-shadow:0 8px 18px rgba(255,150,200,.3);
+  animation:drift 12s linear infinite;
+}
+.cloud::before{
+  content:"";position:absolute;top:-16px;left:18px;width:44px;height:44px;border-radius:50%;
+  background:#fff;
+}
+.cloud::after{
+  content:"";position:absolute;top:-10px;right:20px;width:34px;height:34px;border-radius:50%;
+  background:#fff;
+}
+.cloud.c1{left:-140px;animation-delay:0s;transform:scale(.9);}
+.cloud.c2{left:-140px;bottom:52px;animation-delay:5s;transform:scale(.65);}
+@keyframes drift{
+  from{left:-140px;}
+  to{left:110%;}
+}
+
+/* ===================== 响应式 ===================== */
+@media (max-width:900px){
+  .hero-card{grid-template-columns:1fr;padding:34px 26px;}
+  .hero-art{order:-1;}
+  .about-grid,.skill-grid{grid-template-columns:1fr;}
+  .gallery{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .hero-name{font-size:40px;}
+  .nav ul{gap:0;}
+  .nav ul li a{padding:7px 11px;font-size:13.5px;}
+}
+@media (max-width:620px){
+  .nav{flex-direction:column;border-radius:26px;}
+  .nav ul{justify-content:center;}
+  .info-list{grid-template-columns:1fr;}
+  .sec-title{font-size:24px;}
+  body{padding-bottom:110px;}
+}
+</style>
 </head>
 <body>
-    <!--导航栏-->
-    <nav>
-        <div class="nav-container">
-            <div class="logo">尼加提的个人主页</div>
-            <div class="nav-links">
-                <a href="#home">首页</a>
-                <a href="#about">关于我</a>
-                <a href="#gallery">相册</a>
-                <a href="#skill">专业技能</a>
-                <a href="#eval">自我评价</a>
-                <a href="#contact">联系方式</a>
-            </div>
+
+<!-- ============ 顶部导航 ============ -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <div class="brand"><span class="brand-dot"></span>尼加提 · Nijati</div>
+    <ul>
+      <li><a href="#home">首页</a></li>
+      <li><a href="#about">关于我</a></li>
+      <li><a href="#gallery">相册</a></li>
+      <li><a href="#skills">专业技能</a></li>
+      <li><a href="#eval">自我评价</a></li>
+      <li><a href="#contact">联系方式</a></li>
+    </ul>
+  </nav>
+</div>
+
+<!-- ============ 首页 ============ -->
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-card">
+      <div class="hero-text">
+        <span class="hero-hi">Hello～ 欢迎来到我的小天地</span>
+        <h1 class="hero-name">尼加提</h1>
+        <p class="hero-sub">湖南大学 · 国际经济与贸易（本科） 2024.09 — 2028.06</p>
+        <p class="hero-desc">
+          国际经济与贸易专业在读，喜欢用数据讲故事。修读国际贸易实务、金融学、数字经济学与 Python 等课程，
+          正在把课本里的贸易理论，一点点变成能跑起来的数据分析。
+        </p>
+        <div class="hero-btns">
+          <a class="btn btn-pdf" href="resume.pdf" download="resume.pdf">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="12" y1="18" x2="12" y2="12"></line>
+              <polyline points="9 15 12 18 15 15"></polyline>
+            </svg>
+            下载 PDF 简历
+          </a>
+          <a class="btn btn-ghost" href="#about">了解我多一点</a>
         </div>
-    </nav>
-
-    <div class="container">
-        <!--首页板块-->
-        <section id="home">
-            <h1>你好，我是尼加提</h1>
-            <p>湖南大学｜国际经济与贸易专业｜经济大数据挖掘与分析课程作业</p>
-            <a href="resume.pdf" class="download-btn" download>📄 下载我的PDF简历</a>
-        </section>
-
-        <!--关于我（教育、校园实践）-->
-        <section id="about">
-            <h2>关于我</h2>
-            <p><strong>湖南大学 本科｜国际经济与贸易 2024.09‑2028.06</strong></p>
-            <p><strong>主修课程：</strong>国际贸易实务、国际商务、金融学、数字经济学、Python</p>
-            <ul>
-                <li>熟悉国际贸易流程与操作，了解国际金融市场运作机制，会使用量化分析工具完成基础的数据处理和分析。</li>
-                <li>学术实践：参与贸易场景模拟实训，运用博弈论和概率论完成跨境贸易决策分析作业，提升实际问题解决能力。</li>
-                <li>校园经历：青年志愿者协会，多次参与志愿服务，锻炼团队协作能力，增强社会责任感。</li>
-            </ul>
-            <p><em>目前暂无正式工作经历。</em></p>
-        </section>
-
-        <!--相册 3张图片-->
-        <section id="gallery">
-            <h2>个人相册</h2>
-            <div class="photo-group">
-                <div class="photo-card">
-                    <img src="photo1.jpg" alt="照片1">
-                    <p>照片描述1</p>
-                </div>
-                <div class="photo-card">
-                    <img src="photo2.jpg" alt="照片2">
-                    <p>照片描述2</p>
-                </div>
-                <div class="photo-card">
-                    <img src="photo3.jpg" alt="照片3">
-                    <p>照片描述3</p>
-                </div>
+      </div>
+      <div class="hero-art">
+        <div class="avatar-ring">
+          <div class="avatar-inner">
+            <div class="css-bow">
+              <span class="bow-wing wl"></span>
+              <span class="bow-wing wr"></span>
+              <span class="bow-knot"></span>
             </div>
-        </section>
-
-        <!--专业技能-->
-        <section id="skill">
-            <h2>专业技能</h2>
-            <div>
-                <span class="skill-item">国际贸易理论</span>
-                <span class="skill-item">国际商务</span>
-                <span class="skill-item">Python基础</span>
-                <span class="skill-item">数据处理分析</span>
-                <span class="skill-item">办公软件</span>
-                <span class="skill-item">英语沟通</span>
-                <span class="skill-item">报告撰写</span>
-            </div>
-        </section>
-
-        <!--自我评价，完全取自你的简历-->
-        <section id="eval">
-            <h2>自我评价</h2>
-            <p>国际经济与贸易专业背景，具备扎实的国际贸易理论知识基础，通过课程学习掌握了市场分析、数据处理等基本技能。</p>
-            <p>拥有良好的英语沟通能力及文档处理技巧，能够熟练使用办公软件进行数据分析和报告撰写。</p>
-            <p>性格乐观诚恳，责任心强，做事踏实细致。善于团队合作与人际沟通，具有较强的学习适应能力和自我提升意识。</p>
-        </section>
-
-        <!--联系方式（来自你的简历）-->
-        <section id="contact">
-            <h2>联系方式</h2>
-            <p>姓名：尼加提</p>
-            <p>电话：17673****95</p>
-            <p>邮箱：g1314520iu@126.com</p>
-            <p>出生年月：2005.08｜民族：维吾尔族｜政治面貌：共青团员</p>
-            <p>现居：长沙</p>
-        </section>
+          </div>
+        </div>
+        <div class="hero-spark">
+          <span class="spark s1"></span>
+          <span class="spark s2"></span>
+          <span class="spark s3"></span>
+        </div>
+      </div>
     </div>
-    <footer>
-        © 2026 尼加提｜经济大数据挖掘与分析课程作业
-    </footer>
+  </div>
+</section>
+
+<!-- ============ 关于我 ============ -->
+<section id="about">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">ABOUT ME</span>
+      <h2 class="sec-title">关于我</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="card">
+        <h3 style="font-size:19px;margin-bottom:18px;color:#d9629f;">基本信息</h3>
+        <ul class="info-list">
+          <li><span class="k">姓名</span><span class="v">尼加提</span></li>
+          <li><span class="k">出生年月</span><span class="v">2005.08</span></li>
+          <li><span class="k">民族</span><span class="v">维吾尔族</span></li>
+          <li><span class="k">政治面貌</span><span class="v">共青团员</span></li>
+          <li><span class="k">现居城市</span><span class="v">长沙</span></li>
+          <li><span class="k">学历</span><span class="v">本科在读</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="font-size:19px;margin-bottom:18px;color:#d9629f;">教育与经历</h3>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-title">湖南大学 · 国际经济与贸易（本科）<span class="tl-time">2024.09 — 2028.06</span></div>
+            <p class="tl-desc">主修国际贸易实务、国际商务、金融学、数字经济学、Python 等课程。</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-title">参与贸易场景模拟实训</div>
+            <p class="tl-desc">在模拟贸易场景中完成业务流程演练，熟悉磋商、签约、单证与结算等环节。</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-title">青年志愿者协会 · 志愿服务</div>
+            <p class="tl-desc">参与青年志愿者协会组织的志愿服务活动，暂无正式工作经历。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 相册 ============ -->
+<section id="gallery">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">GALLERY</span>
+      <h2 class="sec-title">我的相册</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="gallery">
+      <div class="ph">
+        <img src="photo1.jpg" alt="相册照片 1">
+        <div class="ph-cap">Photo 01</div>
+      </div>
+      <div class="ph">
+        <img src="photo2.jpg" alt="相册照片 2">
+        <div class="ph-cap">Photo 02</div>
+      </div>
+      <div class="ph">
+        <img src="photo3.jpg" alt="相册照片 3">
+        <div class="ph-cap">Photo 03</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 专业技能 ============ -->
+<section id="skills">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">SKILLS</span>
+      <h2 class="sec-title">专业技能</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skill-grid">
+      <div class="card">
+        <h3 style="font-size:19px;margin-bottom:18px;color:#d9629f;">主修课程</h3>
+        <div class="course-tags">
+          <span class="tag">国际贸易实务</span>
+          <span class="tag">国际商务</span>
+          <span class="tag">金融学</span>
+          <span class="tag">数字经济学</span>
+          <span class="tag">Python</span>
+        </div>
+        <p style="margin-top:20px;font-size:14.5px;color:#83636f;">
+          围绕经济大数据挖掘与分析，正在把课程中的市场分析、数据处理方法逐步落到实际操作里。
+        </p>
+      </div>
+      <div class="card">
+        <h3 style="font-size:19px;margin-bottom:18px;color:#d9629f;">能力自评</h3>
+        <div class="bar">
+          <div class="bar-top"><span>国际贸易理论</span><span>85%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="85"></div></div>
+        </div>
+        <div class="bar">
+          <div class="bar-top"><span>市场分析</span><span>80%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="80"></div></div>
+        </div>
+        <div class="bar">
+          <div class="bar-top"><span>数据处理</span><span>78%</span></div>
+          <div class="bar-track"><div class="bar-fill" data-w="78"></div></div>
+        </div>
+        <div class="bar">
+          <div class="bar-top"><span>英语沟通</span><span>82%</span></div>
+          <div class="bar-track"><div class="bar-fill mint" data-w="82"></div></div>
+        </div>
+        <div class="bar">
+          <div class="bar-top"><span>办公软件 / 报告撰写</span><span>88%</span></div>
+          <div class="bar-track"><div class="bar-fill mint" data-w="88"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 自我评价 ============ -->
+<section id="eval">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">EVALUATION</span>
+      <h2 class="sec-title">自我评价</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="eval-card">
+      <div class="eval-quote">“ ”</div>
+      <p class="eval-text">
+        国际经济与贸易专业背景，具备扎实的国际贸易理论知识基础，通过课程学习掌握了市场分析、数据处理等基本技能。拥有良好的英语沟通能力及文档处理技巧，能够熟练使用办公软件进行数据分析和报告撰写。性格乐观诚恳，责任心强，做事踏实细致。善于团队合作与人际沟通，具有较强的学习适应能力和自我提升意识。
+      </p>
+      <div class="eval-badges">
+        <span class="badge">乐观诚恳</span>
+        <span class="badge">责任心强</span>
+        <span class="badge">踏实细致</span>
+        <span class="badge">善于团队合作</span>
+        <span class="badge">学习适应能力强</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 联系方式 ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">CONTACT</span>
+      <h2 class="sec-title">联系方式</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="ct">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </div>
+        <div class="ct-k">电话</div>
+        <div class="ct-v">17673****95</div>
+      </div>
+      <div class="ct">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="ct-k">邮箱</div>
+        <div class="ct-v">g1314520iu@126.com</div>
+      </div>
+      <div class="ct">
+        <div class="ct-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <div class="ct-k">所在城市</div>
+        <div class="ct-v">长沙</div>
+      </div>
+    </div>
+    <div class="contact-bottom">
+      <a class="btn btn-pdf" href="resume.pdf" download="resume.pdf">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="12" y1="18" x2="12" y2="12"></line>
+          <polyline points="9 15 12 18 15 15"></polyline>
+        </svg>
+        下载 PDF 简历
+      </a>
+      <p class="tip">简历文件：resume.pdf（与本页位于同一目录）</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">尼加提 · 个人主页</div>
+  <p style="margin-top:6px;">《经济大数据挖掘与分析》课程作业 · 湖南大学 国际经济与贸易</p>
+</footer>
+
+<!-- ============ 底部彩虹桥 ============ -->
+<div class="rainbow">
+  <div class="arc a1"></div>
+  <div class="arc a2"></div>
+  <div class="arc a3"></div>
+  <div class="arc a4"></div>
+  <div class="arc a5"></div>
+  <div class="arc a6"></div>
+  <div class="arc a7"></div>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+</div>
+
+<script>
+/* 导航高亮：滚动时标记当前板块 */
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav ul li a'));
+  var sections = links.map(function(a){
+    return document.querySelector(a.getAttribute('href'));
+  });
+
+  function update(){
+    var pos = window.scrollY + 140;
+    var currentIndex = 0;
+    sections.forEach(function(sec, i){
+      if (sec && sec.offsetTop <= pos) currentIndex = i;
+    });
+    links.forEach(function(a, i){
+      a.classList.toggle('active', i === currentIndex);
+    });
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+
+  /* 点击导航：平滑滚动（兼容不支持 scroll-behavior 的浏览器） */
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      var top = target.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({top: top, behavior: 'smooth'});
+    });
+  });
+
+  /* 技能条：滚动进入视口时填充 */
+  var fills = Array.prototype.slice.call(document.querySelectorAll('.bar-fill'));
+  function fillBars(){
+    fills.forEach(function(f){
+      var rect = f.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 60 && !f.dataset.done){
+        f.dataset.done = '1';
+        f.style.width = (f.dataset.w || 0) + '%';
+      }
+    });
+  }
+  window.addEventListener('scroll', fillBars, {passive:true});
+  fillBars();
+})();
+</script>
 </body>
 </html>
